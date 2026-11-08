@@ -6,7 +6,8 @@ import os
 import sys
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
 # Add project root to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
@@ -30,35 +31,50 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include API Routers
+# Include API Routers FIRST
 app.include_router(ml_router)
 app.include_router(sports_router)
 
-@app.get("/")
-async def root():
-    return {
-        "message": "AI-Powered Sports Management Platform API is running.",
-        "version": settings.VERSION,
-        "supabase_connected": settings.is_supabase_configured,
-        "docs_url": "/docs",
-        "endpoints": {
-            "performance_prediction": "/api/ml/performance/predict",
-            "talent_identification": "/api/ml/talent/analyze",
-            "personalized_recommendations": "/api/ml/recommendations/{user_id}",
-            "prediction_history": "/api/ml/performance/history/{player_id}",
-            "dashboard_analytics": "/api/ml/dashboard/analytics",
-            "sports_posts": "/api/sports/posts",
-            "sports_players": "/api/sports/players"
-        }
-    }
-
-@app.get("/health")
+@app.get("/api/health")
 async def health_check():
     return {
         "status": "healthy",
         "supabase_connected": settings.is_supabase_configured,
         "ml_models_ready": True
     }
+
+# Mount React Frontend Build (dist) as static files at root
+FRONTEND_DIST = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "frontend", "dist"))
+
+if os.path.exists(FRONTEND_DIST):
+    # Mount assets folder
+    assets_dir = os.path.join(FRONTEND_DIST, "assets")
+    if os.path.exists(assets_dir):
+        app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
+
+    # Serve index.html for root and SPA routes
+    @app.get("/")
+    async def serve_index():
+        return FileResponse(os.path.join(FRONTEND_DIST, "index.html"))
+
+    @app.get("/{full_path:path}")
+    async def catch_all(full_path: str):
+        # If API path was not matched, return 404
+        if full_path.startswith("api/"):
+            return {"error": "API route not found"}
+        # Otherwise serve index.html for SPA hash/history routes
+        index_file = os.path.join(FRONTEND_DIST, "index.html")
+        if os.path.exists(index_file):
+            return FileResponse(index_file)
+        return {"error": "Frontend build not found"}
+else:
+    @app.get("/")
+    async def root():
+        return {
+            "message": "AI-Powered Sports Management Platform Backend is running.",
+            "version": settings.VERSION,
+            "docs_url": "/docs"
+        }
 
 if __name__ == "__main__":
     import uvicorn

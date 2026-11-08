@@ -19,12 +19,43 @@ import PredictionHistory from './pages/ai/PredictionHistory';
 
 import { authService } from './services/supabase';
 
+// Helper to get view from URL hash
+const getViewFromHash = () => {
+  const hash = window.location.hash.replace('#', '').trim();
+  const validViews = [
+    'feed', 'explore', 'profile', 'notifications', 'auth',
+    'ai-predict', 'ai-talent', 'ai-recommend', 'ai-analytics', 'ai-history'
+  ];
+  return validViews.includes(hash) ? hash : 'feed';
+};
+
 export default function App() {
-  const [currentView, setCurrentView] = useState('feed');
+  const [currentView, setCurrentView] = useState(getViewFromHash);
   const [currentUser, setCurrentUser] = useState(null);
   const [isUploadOpen, setIsUploadOpen] = useState(false);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
   const [exploreInitialSearch, setExploreInitialSearch] = useState('');
+
+  // Sync with browser URL hash navigation (Prevents reload resets and enables permanent bookmarkable links)
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentView(getViewFromHash());
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  // Update hash when currentView changes
+  const handleNavigate = (viewId, params = {}) => {
+    if (params.search) {
+      setExploreInitialSearch(params.search);
+    }
+    if (window.location.hash !== `#${viewId}`) {
+      window.location.hash = `#${viewId}`;
+    }
+    setCurrentView(viewId);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   useEffect(() => {
     authService.getCurrentUser().then(user => {
@@ -32,30 +63,20 @@ export default function App() {
     });
   }, []);
 
-  const handleNavigate = (viewId, params = {}) => {
-    if (params.search) {
-      setExploreInitialSearch(params.search);
-    }
-    setCurrentView(viewId);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const handleSelectPlayer = (player) => {
     setSelectedPlayer(player);
-    setCurrentView('profile');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    handleNavigate('profile');
   };
 
   const handleRunPrediction = (player) => {
     setSelectedPlayer(player);
-    setCurrentView('ai-predict');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    handleNavigate('ai-predict');
   };
 
   const handleLogout = async () => {
     await authService.logout();
     setCurrentUser(null);
-    setCurrentView('feed');
+    handleNavigate('feed');
   };
 
   return (
@@ -74,7 +95,7 @@ export default function App() {
         {/* Left Sidebar */}
         <Sidebar
           currentView={currentView}
-          onNavigate={(id) => setCurrentView(id)}
+          onNavigate={(id) => handleNavigate(id)}
         />
 
         {/* Content Body Area */}
@@ -117,7 +138,7 @@ export default function App() {
             <Auth
               onAuthSuccess={(user) => {
                 setCurrentUser(user);
-                setCurrentView('feed');
+                handleNavigate('feed');
               }}
             />
           )}
@@ -158,7 +179,7 @@ export default function App() {
         onClose={() => setIsUploadOpen(false)}
         onPostCreated={(newPost) => {
           setIsUploadOpen(false);
-          setCurrentView('feed');
+          handleNavigate('feed');
         }}
       />
     </div>

@@ -220,3 +220,4 @@ async def get_dashboard_analytics():
         },
         'sports_distribution': [{'sport': k, 'count': v} for k, v in sports_breakdown.items()]
     }
+

@@ -373,3 +373,4 @@ def get_prediction_history(player_id: Optional[str] = None) -> List[Dict[str, An
             'model_version': 'rf-v1.0'
         }
     ]
+

@@ -113,3 +113,4 @@ async def list_notifications():
             {'id': 'notif-4', 'type': 'prediction', 'message': 'AI Performance prediction score updated: 91.5 Elite tier', 'time': '1d ago', 'is_read': True}
         ]
     }
+

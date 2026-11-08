@@ -252,3 +252,4 @@ INSERT INTO public.sports (name, slug, category, icon_name, description) VALUES
     ('Badminton', 'badminton', 'Racket', 'wind', 'Racket sport played using racquets to hit a shuttlecock across a net.'),
     ('Athletics', 'athletics', 'Track & Field', 'zap', 'Collection of sporting events involving competitive running, jumping, throwing, and walking.')
 ON CONFLICT (slug) DO NOTHING;
+

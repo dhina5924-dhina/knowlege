@@ -26,3 +26,4 @@ class Settings:
         return bool(self.SUPABASE_URL and (self.SUPABASE_SERVICE_ROLE_KEY or self.SUPABASE_ANON_KEY))
 
 settings = Settings()
+

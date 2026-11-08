@@ -232,3 +232,4 @@ class PlayerPerformancePredictor:
                 'rmse': self.metrics.get('rmse', 2.45)
             }
         }
+

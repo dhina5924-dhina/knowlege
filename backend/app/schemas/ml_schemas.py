@@ -24,3 +24,4 @@ class UserInterestItem(BaseModel):
 
 class UpdateInterestsRequest(BaseModel):
     interests: List[UserInterestItem]
+

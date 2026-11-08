@@ -98,3 +98,4 @@ if __name__ == '__main__':
     df.to_csv(csv_path, index=False)
     print(f"Generated {len(df)} sports records at {csv_path}")
     print(df.head())
+

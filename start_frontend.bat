@@ -7,3 +7,4 @@ echo.
 cd frontend
 cmd /c npm.cmd run dev
 pause
+

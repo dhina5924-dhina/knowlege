@@ -42,3 +42,4 @@ def evaluate_clustering(X_scaled: np.ndarray, cluster_labels: np.ndarray) -> Dic
         'davies_bouldin_index': round(float(davies), 3),
         'verdict': 'Well-Separated Performance Clusters' if sil >= 0.35 else 'Moderate Cluster Separation'
     }
+

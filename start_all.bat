@@ -16,3 +16,4 @@ timeout /t 4 /nobreak >nul
 start http://127.0.0.1:5173/
 echo All systems running! Press any key to exit this launcher window.
 pause >nul
+

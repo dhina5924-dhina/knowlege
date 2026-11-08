@@ -180,3 +180,4 @@ export default function Feed({ onNavigate, onAuthorClick }) {
     </div>
   );
 }
+

@@ -149,3 +149,4 @@ class ContentBasedRecommender:
                 })
         results.sort(key=lambda x: x['relevance_score'], reverse=True)
         return results[:4]
+

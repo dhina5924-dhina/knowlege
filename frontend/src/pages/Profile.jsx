@@ -206,3 +206,4 @@ export default function Profile({ player, onRunPrediction, isCurrentUser = true 
     </div>
   );
 }
+

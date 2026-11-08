@@ -224,3 +224,4 @@ export default function Explore({ onSelectPlayer, initialSearch = '' }) {
     </div>
   );
 }
+

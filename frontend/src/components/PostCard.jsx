@@ -113,6 +113,7 @@ export default function PostCard({ post, onAuthorClick }) {
         <div className="flex items-center justify-between pt-2 border-t border-slate-800 text-slate-400 text-xs font-semibold">
           <div className="flex items-center gap-4">
             <button
+              type="button"
               onClick={handleLike}
               className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg transition-colors ${
                 isLiked 
@@ -125,6 +126,7 @@ export default function PostCard({ post, onAuthorClick }) {
             </button>
 
             <button
+              type="button"
               onClick={() => setShowComments(!showComments)}
               className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg hover:text-indigo-400 hover:bg-slate-800 transition-colors"
             >
@@ -134,6 +136,7 @@ export default function PostCard({ post, onAuthorClick }) {
           </div>
 
           <button 
+            type="button"
             onClick={() => {
               if (navigator.share) {
                 navigator.share({ title: post.sport_name, text: post.caption, url: window.location.href });
@@ -184,4 +187,3 @@ export default function PostCard({ post, onAuthorClick }) {
     </article>
   );
 }
-

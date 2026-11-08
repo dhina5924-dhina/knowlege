@@ -72,6 +72,7 @@ export default function Explore({ onSelectPlayer, initialSearch = '' }) {
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
             {SPORTS.map(sp => (
               <button
+                type="button"
                 key={sp}
                 onClick={() => setSelectedSport(sp)}
                 className={`px-3 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors ${
@@ -151,6 +152,7 @@ export default function Explore({ onSelectPlayer, initialSearch = '' }) {
                   {/* Action Buttons */}
                   <div className="flex items-center gap-2 pt-1">
                     <button
+                      type="button"
                       onClick={() => toggleFollow(p.id)}
                       className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-bold transition-all ${
                         isFollowing
@@ -172,6 +174,7 @@ export default function Explore({ onSelectPlayer, initialSearch = '' }) {
                     </button>
                     
                     <button
+                      type="button"
                       onClick={() => onSelectPlayer && onSelectPlayer(p)}
                       className="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700 transition-colors"
                     >
@@ -211,6 +214,7 @@ export default function Explore({ onSelectPlayer, initialSearch = '' }) {
               </div>
 
               <button
+                type="button"
                 onClick={() => alert(`Joined ${comm.name} community!`)}
                 className="shrink-0 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 hover:text-white border border-slate-700 transition-colors"
               >
@@ -224,4 +228,3 @@ export default function Explore({ onSelectPlayer, initialSearch = '' }) {
     </div>
   );
 }
-

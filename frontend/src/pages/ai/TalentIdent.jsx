@@ -112,6 +112,7 @@ export default function TalentIdent({ onSelectPlayer }) {
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
           {SPORT_FILTERS.map(sp => (
             <button
+              type="button"
               key={sp}
               onClick={() => setSelectedSport(sp)}
               className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors ${
@@ -273,6 +274,7 @@ export default function TalentIdent({ onSelectPlayer }) {
               </h3>
               {selectedClusterId !== null && (
                 <button
+                  type="button"
                   onClick={() => setSelectedClusterId(null)}
                   className="text-xs text-indigo-400 hover:underline"
                 >
@@ -335,4 +337,3 @@ export default function TalentIdent({ onSelectPlayer }) {
     </div>
   );
 }
-

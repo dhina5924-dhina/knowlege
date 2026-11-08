@@ -40,6 +40,7 @@ export default function Feed({ onNavigate, onAuthorClick }) {
           const active = selectedSport === sp;
           return (
             <button
+              type="button"
               key={sp}
               onClick={() => setSelectedSport(sp)}
               className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
@@ -107,6 +108,7 @@ export default function Feed({ onNavigate, onAuthorClick }) {
               Powered by Random Forest Regression. Input your match stats to predict your future score and receive statistical improvement tips.
             </p>
             <button
+              type="button"
               onClick={() => onNavigate('ai-predict')}
               className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-md shadow-indigo-600/30 transition-all"
             >
@@ -123,6 +125,7 @@ export default function Feed({ onNavigate, onAuthorClick }) {
                 <span>Sports Communities</span>
               </h4>
               <button 
+                type="button"
                 onClick={() => onNavigate('explore')}
                 className="text-[11px] font-semibold text-indigo-400 hover:underline"
               >
@@ -165,6 +168,7 @@ export default function Feed({ onNavigate, onAuthorClick }) {
               Cluster athlete statistics into 4 objective performance tiers using unsupervised clustering.
             </p>
             <button
+              type="button"
               onClick={() => onNavigate('ai-talent')}
               className="w-full py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white text-xs font-semibold border border-slate-700 transition-colors flex items-center justify-center gap-2"
             >
@@ -180,4 +184,3 @@ export default function Feed({ onNavigate, onAuthorClick }) {
     </div>
   );
 }
-

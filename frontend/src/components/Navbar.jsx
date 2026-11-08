@@ -49,6 +49,7 @@ export default function Navbar({
               placeholder="Search players, sports, tactics, posts..."
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
+                  e.preventDefault();
                   onNavigate('explore', { search: e.target.value });
                 }
               }}
@@ -77,6 +78,7 @@ export default function Navbar({
 
           {/* Upload Button */}
           <button
+            type="button"
             onClick={onOpenUpload}
             className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white text-xs font-semibold shadow-md shadow-indigo-600/25 transition-all transform active:scale-95"
           >
@@ -86,6 +88,7 @@ export default function Navbar({
 
           {/* Notifications Bell */}
           <button
+            type="button"
             onClick={() => onNavigate('notifications')}
             className="relative p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
           >
@@ -101,6 +104,7 @@ export default function Navbar({
           {currentUser ? (
             <div className="flex items-center gap-2 pl-2 border-l border-slate-800">
               <button 
+                type="button"
                 onClick={() => onNavigate('profile')}
                 className="flex items-center gap-2 text-left group"
               >
@@ -114,6 +118,7 @@ export default function Navbar({
                 </span>
               </button>
               <button
+                type="button"
                 onClick={onLogout}
                 title="Sign out"
                 className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-800 transition-colors"
@@ -123,6 +128,7 @@ export default function Navbar({
             </div>
           ) : (
             <button
+              type="button"
               onClick={() => onNavigate('auth')}
               className="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 transition-colors"
             >
@@ -135,4 +141,3 @@ export default function Navbar({
     </header>
   );
 }
-

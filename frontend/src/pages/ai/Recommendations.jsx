@@ -88,6 +88,7 @@ export default function Recommendations({ currentUser, onSelectPlayer }) {
         </div>
 
         <button
+          type="button"
           onClick={loadRecommendations}
           disabled={loading}
           className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold border border-slate-700 transition-colors"
@@ -112,6 +113,7 @@ export default function Recommendations({ currentUser, onSelectPlayer }) {
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
             {AVAILABLE_SPORTS.map(sp => (
               <button
+                type="button"
                 key={sp}
                 onClick={() => setSelectedSport(sp)}
                 className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors ${
@@ -132,6 +134,7 @@ export default function Recommendations({ currentUser, onSelectPlayer }) {
             const active = userInterests.includes(tag);
             return (
               <button
+                type="button"
                 key={tag}
                 onClick={() => toggleInterestTag(tag)}
                 className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${
@@ -207,6 +210,7 @@ export default function Recommendations({ currentUser, onSelectPlayer }) {
 
                     <div className="flex items-center justify-between pt-2 border-t border-slate-800/80 text-xs text-slate-400">
                       <button
+                        type="button"
                         onClick={() => toggleLike(post.id)}
                         className={`flex items-center gap-1.5 ${liked ? 'text-rose-500 font-bold' : 'hover:text-rose-400'}`}
                       >
@@ -266,6 +270,7 @@ export default function Recommendations({ currentUser, onSelectPlayer }) {
                       </div>
 
                       <button
+                        type="button"
                         onClick={() => toggleFollow(p.id)}
                         className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                           isFollowed 
@@ -303,6 +308,7 @@ export default function Recommendations({ currentUser, onSelectPlayer }) {
                     <div className="flex justify-between items-center pt-1 text-[11px]">
                       <span className="text-slate-500">{comm.members_count.toLocaleString()} Athletes</span>
                       <button
+                        type="button"
                         onClick={() => alert(`Joined ${comm.name}!`)}
                         className="text-xs font-bold text-cyan-400 hover:underline"
                       >
@@ -322,4 +328,3 @@ export default function Recommendations({ currentUser, onSelectPlayer }) {
     </div>
   );
 }
-

@@ -45,6 +45,7 @@ export default function Sidebar({ currentView, onNavigate }) {
               const active = currentView === item.id;
               return (
                 <button
+                  type="button"
                   key={item.id}
                   onClick={() => onNavigate(item.id)}
                   className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
@@ -79,6 +80,7 @@ export default function Sidebar({ currentView, onNavigate }) {
               const active = currentView === item.id;
               return (
                 <button
+                  type="button"
                   key={item.id}
                   onClick={() => onNavigate(item.id)}
                   className={`w-full flex flex-col items-start px-3.5 py-2 rounded-xl text-xs font-semibold transition-all ${
@@ -128,4 +130,3 @@ export default function Sidebar({ currentView, onNavigate }) {
     </aside>
   );
 }
-

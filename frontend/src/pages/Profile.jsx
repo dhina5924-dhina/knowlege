@@ -63,6 +63,7 @@ export default function Profile({ player, onRunPrediction, isCurrentUser = true 
 
               <div className="flex items-center gap-2 justify-center sm:justify-end">
                 <button
+                  type="button"
                   onClick={() => onRunPrediction && onRunPrediction(current)}
                   className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 transition-transform active:scale-95"
                 >
@@ -118,6 +119,7 @@ export default function Profile({ player, onRunPrediction, isCurrentUser = true 
       {/* Tabs */}
       <div className="flex border-b border-slate-800 text-xs font-bold gap-6">
         <button
+          type="button"
           onClick={() => setActiveTab('overview')}
           className={`pb-3 transition-colors ${
             activeTab === 'overview'
@@ -128,6 +130,7 @@ export default function Profile({ player, onRunPrediction, isCurrentUser = true 
           Athletic Breakdown
         </button>
         <button
+          type="button"
           onClick={() => setActiveTab('media')}
           className={`pb-3 transition-colors ${
             activeTab === 'media'
@@ -206,4 +209,3 @@ export default function Profile({ player, onRunPrediction, isCurrentUser = true 
     </div>
   );
 }
-

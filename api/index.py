@@ -9,3 +9,4 @@ if root_dir not in sys.path:
 from backend.app.main import app
 
 # Vercel looks for the WSGI/ASGI application instance named `app`
+

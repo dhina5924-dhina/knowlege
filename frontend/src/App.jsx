@@ -9,6 +9,7 @@ import Explore from './pages/Explore';
 import Profile from './pages/Profile';
 import Notifications from './pages/Notifications';
 import Auth from './pages/Auth';
+import DataExplorer from './pages/DataExplorer';
 
 // AI Sports Intelligence Pages
 import PerformancePredict from './pages/ai/PerformancePredict';
@@ -23,7 +24,7 @@ import { authService } from './services/supabase';
 const getViewFromHash = () => {
   const hash = window.location.hash.replace('#', '').trim();
   const validViews = [
-    'feed', 'explore', 'profile', 'notifications', 'auth',
+    'feed', 'explore', 'profile', 'notifications', 'auth', 'data-explorer',
     'ai-predict', 'ai-talent', 'ai-recommend', 'ai-analytics', 'ai-history'
   ];
   return validViews.includes(hash) ? hash : 'feed';
@@ -141,6 +142,11 @@ export default function App() {
                 handleNavigate('feed');
               }}
             />
+          )}
+
+          {/* Stored Database Tables Explorer */}
+          {currentView === 'data-explorer' && (
+            <DataExplorer />
           )}
 
           {/* AI SPORTS INTELLIGENCE DASHBOARD PAGES */}

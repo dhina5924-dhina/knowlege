@@ -1,0 +1,44 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "1. Start Backend (FastAPI ML)",
+      "type": "shell",
+      "command": "py -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 --reload",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "group": "servers"
+      }
+    },
+    {
+      "label": "2. Start Frontend (React Vite)",
+      "type": "shell",
+      "command": "cmd /c npm.cmd run dev",
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "group": "servers"
+      }
+    },
+    {
+      "label": "Run Full Platform (Backend + Frontend)",
+      "dependsOn": [
+        "1. Start Backend (FastAPI ML)",
+        "2. Start Frontend (React Vite)"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
